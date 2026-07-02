@@ -14,7 +14,7 @@ load_dotenv()
 
 # --- IA DE GOOGLE ---
 import google.generativeai as genai
-from google.genai import types
+from google.generativeai import types  # ← CORREGIDO
 
 # Importar sincronizador de Garmin
 from garmin_sync import GarminService
@@ -193,10 +193,9 @@ Base.metadata.create_all(bind=engine)
 # --- APP FASTAPI Y CORS ---
 app = FastAPI()
 
-# ─── CORREGIDO: PERMITE TODOS LOS ORÍGENES ──────────────────────────────────
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Permite cualquier origen (solo para desarrollo local)
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
