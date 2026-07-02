@@ -14,13 +14,14 @@ load_dotenv()
 
 # --- IA DE GOOGLE ---
 import google.generativeai as genai
-from google.generativeai import types  # ← CORREGIDO
+from google.generativeai import types
+
+# --- CONFIGURACIÓN DE GEMINI IA ---
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+client = genai.GenerativeModel('gemini-2.5-flash')
 
 # Importar sincronizador de Garmin
 from garmin_sync import GarminService
-
-# --- CONFIGURACIÓN DE GEMINI IA ---
-client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 # --- CONFIGURACIÓN DE BASE DE DATOS ---
 SQLALCHEMY_DATABASE_URL = "sqlite:///./habits.db"
@@ -579,10 +580,9 @@ def get_finance_advice(db: Session = Depends(get_db)):
     """
 
     try:
-        response = client.models.generate_content(
-            model='gemini-2.5-flash',
+        response = client.generate_content(
             contents=[{"role": "user", "parts": [{"text": prompt}]}],
-            config=types.GenerateContentConfig(temperature=0.7)
+            generation_config=types.GenerationConfig(temperature=0.7)
         )
         advice = response.text
     except Exception as e:
@@ -1096,13 +1096,10 @@ def ask_ai_coach(req: CoachRequest, db: Session = Depends(get_db)):
         if not contents or contents[-1]["role"] != "user":
             contents.append({"role": "user", "parts": [{"text": req.user_message}]})
 
-        response = client.models.generate_content(
-            model='gemini-2.5-flash',
+        response = client.generate_content(
             contents=contents,
-            config=types.GenerateContentConfig(
-                system_instruction=system_prompt,
-                temperature=0.5
-            )
+            generation_config=types.GenerationConfig(temperature=0.5),
+            system_instruction=system_prompt
         )
         respuesta_ia = response.text
     except Exception as e:
