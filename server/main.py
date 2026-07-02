@@ -13,7 +13,7 @@ from typing import List, Optional
 load_dotenv()
 
 # --- IA DE GOOGLE ---
-from google import genai
+import google.generativeai as genai
 from google.genai import types
 
 # Importar sincronizador de Garmin
