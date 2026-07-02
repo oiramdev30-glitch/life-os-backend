@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&family=DM+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+html, body, #root { 
+  height: 100%; 
+  background: #0B0E1A; 
+}
+
+body {
+  font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+  color: #F1F5F9;
+  -webkit-font-smoothing: antialiased;
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }

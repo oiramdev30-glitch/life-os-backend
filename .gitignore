@@ -1,0 +1,12 @@
+﻿@"
+node_modules/
+server/habits.db
+server/life_os.db
+server/__pycache__/
+server/*.json
+.env
+dist/
+.vite/
+.DS_Store
+*.log
+"@ | Out-File -FilePath .gitignore -Encoding utf8
