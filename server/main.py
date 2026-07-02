@@ -13,12 +13,12 @@ from typing import List, Optional
 load_dotenv()
 
 # --- IA DE GOOGLE ---
-import google.generativeai as genai
-from google.generativeai import types
+from google import genai
+from google.genai import types
 
 # --- CONFIGURACIÓN DE GEMINI IA ---
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-client = genai.GenerativeModel('gemini-2.5-flash')
+client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+GEMINI_MODEL = "gemini-2.5-flash"
 
 # Importar sincronizador de Garmin
 from garmin_sync import GarminService
@@ -1096,11 +1096,14 @@ def ask_ai_coach(req: CoachRequest, db: Session = Depends(get_db)):
         if not contents or contents[-1]["role"] != "user":
             contents.append({"role": "user", "parts": [{"text": req.user_message}]})
 
-        response = client.generate_content(
-            contents=contents,
-            generation_config=types.GenerationConfig(temperature=0.5),
-            system_instruction=system_prompt
-        )
+        response = client.models.generate_content(
+                                            model=GEMINI_MODEL,
+                                            contents=contents,
+                                            config=types.GenerateContentConfig(
+                                                system_instruction=system_prompt,
+                                                temperature=0.5
+                                            )
+                                        )
         respuesta_ia = response.text
     except Exception as e:
         respuesta_ia = f"Error en el núcleo de IA: {str(e)}"
