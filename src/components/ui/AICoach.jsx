@@ -47,7 +47,7 @@ export default function AICoach() {
 
   const fetchWeeklySummary = async () => {
     try {
-      const res = await axios.get(`http://192.168.1.72:8000/api/v1/coach/weekly-summary`);
+      const res = await axios.get(`https://life-os-backend-production-63db.up.railway.app/api/v1/coach/weekly-summary`);
       if (res.data?.summary) {
         // Mostrar el resumen como un mensaje del asistente en el canal general
         setChannelMessages(prev => ({
@@ -64,7 +64,7 @@ export default function AICoach() {
   const generateWeeklySummary = async () => {
     setGeneratingSummary(true);
     try {
-      await axios.post('http://192.168.1.72:8000/api/v1/coach/weekly-summary');
+      await axios.post('https://life-os-backend-production-63db.up.railway.app/api/v1/coach/weekly-summary');
       await fetchWeeklySummary();
       window.showToast?.({ message: 'Resumen semanal generado', type: 'success' });
     } catch {
@@ -107,7 +107,7 @@ export default function AICoach() {
     const history = fullHistory.slice(-MAX_HISTORY);
 
     try {
-      const res = await axios.post('http://192.168.1.72:8000/api/v1/coach/ask', {
+      const res = await axios.post('https://life-os-backend-production-63db.up.railway.app/api/v1/coach/ask', {
         user_message: userMsg,
         module: currentChan,
         history,

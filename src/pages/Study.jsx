@@ -4,7 +4,7 @@ import { Star, Plus, X, Pencil, Trash2, BookOpen, Trophy, Zap, Check } from "luc
 import { AreaChart, Area, XAxis, ResponsiveContainer, Tooltip } from "recharts";
 import axios from "axios";
 
-const API = "http://192.168.1.72:8000/api/v1/study";
+const API = "https://life-os-backend-production-63db.up.railway.app/api/v1/study";
 
 const SKILL_COLORS = ["#22D3EE", "#67E8F9", "#FB923C", "#C084FC", "#F43F5E", "#4ADE80", "#FACC15", "#818CF8"];
 const PLATFORMS = ["Universidad", "Udemy", "Coursera", "YouTube", "Frontend Masters", "Libro", "Otro"];

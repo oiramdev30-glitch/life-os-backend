@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Download, Upload, AlertCircle, CheckCircle2, Loader2 } from 'lucide-react';
 import axios from 'axios';
 
-const API = 'http://192.168.1.72:8000/api/v1';
+const API = 'https://life-os-backend-production-63db.up.railway.app/api/v1';
 
 export default function DataManager() {
   const [exporting, setExporting] = useState(false);

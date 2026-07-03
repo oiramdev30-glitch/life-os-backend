@@ -7,7 +7,7 @@ import {
 import axios from "axios";
 import useStore from "../store/useStore";
 
-const API = "http://192.168.1.72:8000/api/v1";
+const API = "https://life-os-backend-production-63db.up.railway.app/api/v1";
 
 const COLUMNS = [
   { id: "backlog",  label: "Backlog",      color: "#64748B", bg: "rgba(100,116,139,0.12)" },

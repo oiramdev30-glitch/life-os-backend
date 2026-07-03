@@ -100,7 +100,7 @@ const CATEGORIES = [
   { cat: "Otros", color: "#94A3B8", icon: Package },
 ];
 
-const API = "http://192.168.1.72:8000/api/v1";
+const API = "https://life-os-backend-production-63db.up.railway.app/api/v1";
 
 // ─── HELPERS ────────────────────────────────────────────────────────────────
 function calcMinPayment(balance, annualRate) {

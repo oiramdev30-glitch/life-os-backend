@@ -4,7 +4,7 @@ import { Sun, CheckCircle2, Clock, AlertCircle, Sparkles, X } from 'lucide-react
 import useStore from '../store/useStore';
 import axios from 'axios';
 
-const API = 'http://192.168.1.72:8000/api/v1';
+const API = 'https://life-os-backend-production-63db.up.railway.app/api/v1';
 const BRIEFING_KEY = 'last_briefing_date';
 
 export default function MorningBriefing() {

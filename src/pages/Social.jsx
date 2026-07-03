@@ -4,7 +4,7 @@ import { Clock, Plus, X, Smartphone, AlertTriangle, CheckCircle2 } from "lucide-
 import { BarChart, Bar, XAxis, Tooltip, ResponsiveContainer } from "recharts";
 import axios from "axios";
 
-const API = "http://192.168.1.72:8000/api/v1/social";
+const API = "https://life-os-backend-production-63db.up.railway.app/api/v1/social";
 
 const SOCIAL_APPS = [
   { name: "Instagram", limit: 60, color: "#E1306C" },

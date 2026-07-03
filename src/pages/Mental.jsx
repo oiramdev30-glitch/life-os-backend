@@ -4,7 +4,7 @@ import { Brain, Sparkles, Plus, Smile, Frown, Meh, SmilePlus } from "lucide-reac
 import { AreaChart, Area, XAxis, Tooltip, ResponsiveContainer } from "recharts";
 import axios from "axios";
 
-const API = "http://192.168.1.72:8000/api/v1";
+const API = "https://life-os-backend-production-63db.up.railway.app/api/v1";
 
 const moods = [
   { icon: Frown, label: "Muy bajo", value: 1, color: "#EF4444" },

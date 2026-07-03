@@ -6,7 +6,7 @@ import {
 } from "lucide-react";
 import axios from "axios";
 
-const API = "http://192.168.1.72:8000/api/v1";
+const API = "https://life-os-backend-production-63db.up.railway.app/api/v1";
 
 const PRESETS = [
   { label: "25 min", seconds: 25 * 60 },

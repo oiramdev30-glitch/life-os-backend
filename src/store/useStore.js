@@ -55,7 +55,7 @@ const useStore = create((set, get) => ({
   fetchHabits: async () => {
     set({ isLoading: true, error: null });
     try {
-      const res = await axios.get('http://192.168.1.72:8000/api/v1/habits', { timeout: 4000 });
+      const res = await axios.get('https://life-os-backend-production-63db.up.railway.app/api/v1/habits', { timeout: 4000 });
       set({ habits: res.data, backendOnline: true, isLoading: false });
     } catch (err) {
       const msg = isNetworkError(err) ? 'No hay conexión con el servidor' : 'Error al cargar hábitos';
@@ -66,7 +66,7 @@ const useStore = create((set, get) => ({
 
   addHabit: async (newHabit) => {
     try {
-      const res = await axios.post('http://192.168.1.72:8000/api/v1/habits', newHabit, { timeout: 4000 });
+      const res = await axios.post('https://life-os-backend-production-63db.up.railway.app/api/v1/habits', newHabit, { timeout: 4000 });
       set((state) => ({ habits: [...state.habits, res.data], backendOnline: true }));
       window.showToast?.({ message: 'Hábito agregado', type: 'success' });
       return res.data;
@@ -93,7 +93,7 @@ const useStore = create((set, get) => ({
       }),
     }));
     try {
-      await axios.patch(`http://192.168.1.72:8000/api/v1/habits/${id}`, { done: newStatus }, { timeout: 4000 });
+      await axios.patch(`https://life-os-backend-production-63db.up.railway.app/api/v1/habits/${id}`, { done: newStatus }, { timeout: 4000 });
       set({ backendOnline: true });
     } catch (err) {
       if (isNetworkError(err)) set({ backendOnline: false });
@@ -104,7 +104,7 @@ const useStore = create((set, get) => ({
   editHabit: async (id, updatedData) => {
     set((state) => ({ habits: state.habits.map((h) => h.id === id ? { ...h, ...updatedData } : h) }));
     try {
-      await axios.put(`http://192.168.1.72:8000/api/v1/habits/${id}`, updatedData, { timeout: 4000 });
+      await axios.put(`https://life-os-backend-production-63db.up.railway.app/api/v1/habits/${id}`, updatedData, { timeout: 4000 });
       set({ backendOnline: true });
       window.showToast?.({ message: 'Hábito actualizado', type: 'success' });
     } catch (err) {
@@ -116,7 +116,7 @@ const useStore = create((set, get) => ({
   deleteHabit: async (id) => {
     set((state) => ({ habits: state.habits.filter((h) => h.id !== id) }));
     try {
-      await axios.delete(`http://192.168.1.72:8000/api/v1/habits/${id}`, { timeout: 4000 });
+      await axios.delete(`https://life-os-backend-production-63db.up.railway.app/api/v1/habits/${id}`, { timeout: 4000 });
       set({ backendOnline: true });
       window.showToast?.({ message: 'Hábito eliminado', type: 'info' });
     } catch (err) {
@@ -146,7 +146,7 @@ const useStore = create((set, get) => ({
 
   fetchTaskSummary: async () => {
     try {
-      const res = await axios.get('http://192.168.1.72:8000/api/v1/tasks/summary', { timeout: 4000 });
+      const res = await axios.get('https://life-os-backend-production-63db.up.railway.app/api/v1/tasks/summary', { timeout: 4000 });
       set({ taskSummary: res.data });
     } catch { /* usa el valor anterior si falla */ }
   },
@@ -160,8 +160,8 @@ const useStore = create((set, get) => ({
     const { habits, metrics } = get();
     try {
       const [resTask, resFocus] = await Promise.allSettled([
-        axios.get('http://192.168.1.72:8000/api/v1/tasks/summary', { timeout: 4000 }),
-        axios.get('http://192.168.1.72:8000/api/v1/focus/summary', { timeout: 4000 }),
+        axios.get('https://life-os-backend-production-63db.up.railway.app/api/v1/tasks/summary', { timeout: 4000 }),
+        axios.get('https://life-os-backend-production-63db.up.railway.app/api/v1/focus/summary', { timeout: 4000 }),
       ]);
       const taskSummary  = resTask.status  === 'fulfilled' ? resTask.value.data  : null;
       const focusSummary = resFocus.status === 'fulfilled' ? resFocus.value.data : null;
@@ -204,7 +204,7 @@ const useStore = create((set, get) => ({
     if (get().isSyncingGarmin) return;
     set({ isSyncingGarmin: true, garminError: null });
     try {
-      const res = await axios.get('http://192.168.1.72:8000/api/v1/garmin/sync', { timeout: 40000 });
+      const res = await axios.get('https://life-os-backend-production-63db.up.railway.app/api/v1/garmin/sync', { timeout: 40000 });
       const data = res.data?.data;
       if (data) {
         set((state) => ({

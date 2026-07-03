@@ -77,8 +77,8 @@ function SportsHistory() {
       try {
         // Pedimos ahora las sesiones de gym guardadas en su nueva tabla
         const [resGym, resRun] = await Promise.all([
-          axios.get("http://192.168.1.72:8000/api/v1/gym/session-history"),
-          axios.get("http://192.168.1.72:8000/api/v1/running/history")
+          axios.get("https://life-os-backend-production-63db.up.railway.app/api/v1/gym/session-history"),
+          axios.get("https://life-os-backend-production-63db.up.railway.app/api/v1/running/history")
         ]);
         setGymSessionLogs(resGym.data);
         setRunningLogs(resRun.data);
